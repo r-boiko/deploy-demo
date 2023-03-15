@@ -6,8 +6,8 @@ jobs:
     steps:
       - name: Setup git config
         run: |
-          git config user.name "Roman Boyko"
-          git config user.email "rboyko94@gmail.com"
+          git config user.name $MY_EMAIL
+          git config user.email $MY_NAME
       - name: Get repository code
         uses: actions/checkout@v3
       - name: Install dependencies
