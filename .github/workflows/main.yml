@@ -1,7 +1,7 @@
 name: Deployment
 on: push
 env:
-  MY_EMAIL: rboyko-94@gmail.com
+  MY_EMAIL: rboyko94@gmail.com
   MY_NAME: roman-boyko
 jobs:
   Deploy:
