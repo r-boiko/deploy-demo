@@ -1,6 +1,6 @@
 import Users from "./components/Users";
 import { usersClassStore } from "./components/Users/storeClass";
-import { usersFuncStore } from "./components/Users/storeFunc";
+// import { usersFuncStore } from "./components/Users/storeFunc";
 import "antd/dist/reset.css";
 import "./App.css";
 
