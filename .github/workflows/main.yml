@@ -1,9 +1,13 @@
 name: Deployment
 on: push
 jobs:
-  Deployment:
+  Deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup git config
+        run: |
+          git config --global user.email rboyko94@gmail.com
+          git config --global user.name roman-boyko
       - name: Get repository code
         uses: actions/checkout@v3
       - name: Install dependencies
