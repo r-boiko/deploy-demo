@@ -1,13 +1,16 @@
 name: Deployment
 on: push
+env:
+  MY_EMAIL: rboyko-94@gmail.com
+  MY_NAME: roman-boyko
 jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Setup git config
         run: |
-          git config user.name roman-boyko
-          git config user.email rboyko94@gmail.com
+          git config --global user.email $MY_EMAIL
+          git config --global user.name $MY_NAME
       - name: Get repository code
         uses: actions/checkout@v3
       - name: Install dependencies
