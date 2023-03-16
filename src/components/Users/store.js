@@ -1,6 +1,6 @@
 import { makeAutoObservable, autorun, when } from "mobx";
 
-class UsersClassStore {
+class UsersStore {
   users = [];
 
   constructor() {
@@ -28,13 +28,13 @@ class UsersClassStore {
   }
 }
 
-export const usersClassStore = new UsersClassStore();
+export const usersStore = new UsersStore();
 
 autorun(() => {
-  console.log("autorun:", usersClassStore);
+  console.log("autorun:", usersStore);
 });
 
 when(
-  () => usersClassStore.allUsers > 0,
-  () => console.log("when:", usersClassStore.allUsers)
+  () => usersStore.allUsers > 0,
+  () => console.log("when:", usersStore.allUsers)
 );
