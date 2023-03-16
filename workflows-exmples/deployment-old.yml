@@ -1,58 +1,71 @@
 name: Deployment
+
 on:
   workflow_dispatch:
   push:
     branches:
       - main
+
+permissions:
+  pages: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
+
       - name: Cache deps
         uses: actions/cache@v3
         with:
           path: ~./npm
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies
         run: npm ci
+
       - name: Test application
         run: npm run test
+
   lint:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
+
       - name: Cache deps
         uses: actions/cache@v3
         with:
           path: ~./npm
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies
         run: npm ci
+
       - name: Lint application
         run: npm run lint
-  build:
+
+  build-and-deploy:
     needs: [lint, test]
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
+
       - name: Cache deps
         uses: actions/cache@v3
         with:
           path: ~./npm
           key: node-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies
         run: npm ci
+
       - name: Build application
         run: npm run build
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Deploy application
-        uses: JamesIves/github-pages-deploy-action@v3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
