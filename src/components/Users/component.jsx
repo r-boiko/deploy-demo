@@ -9,7 +9,7 @@ const Users = observer(
     return (
       <div>
         <Space direction={"vertical"}>
-          <Typography.Title>Users</Typography.Title>
+          <Typography.Title>Users!!!</Typography.Title>
           <AddUser onSubmit={addUser} />
           <Statistic title="Active Users" value={allUsers} />
           <Button type="primary" onClick={fetchUsers}>
