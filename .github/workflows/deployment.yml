@@ -37,6 +37,7 @@ jobs:
         run: npm run lint
   build:
     needs: [lint, test]
+#    continue-on-error: true
     strategy:
       matrix:
         node-version: [14, 16]
@@ -58,3 +59,16 @@ jobs:
         run: npm ci
       - name: Build application
         run: npm run build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: build
+          name: build-files
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build project
+        uses: actions/download-artifact@v3
+        with:
+          name: build-files
