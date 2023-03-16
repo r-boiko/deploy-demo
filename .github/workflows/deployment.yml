@@ -10,7 +10,7 @@ permissions:
   pages: write
 
 jobs:
-  test 🛎️:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
@@ -28,7 +28,7 @@ jobs:
       - name: Test application
         run: npm run test
 
-  lint 🔧:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
@@ -46,7 +46,7 @@ jobs:
       - name: Lint application
         run: npm run lint
 
-  build-and-deploy 🚀:
+  build-and-deploy:
     needs: [lint, test]
     runs-on: ubuntu-latest
     steps:
